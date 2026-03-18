@@ -1,6 +1,5 @@
 package logic;
 
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Color;
-import javax.swing.SpringLayout;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,16 +18,9 @@ import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
+import java.awt.BorderLayout;
 public class Gui {
 	JFrame inicio;
     JFrame frame;
@@ -37,16 +28,66 @@ public class Gui {
     private JTextField ingresarPalabra;
     private JPanel panelDeResultados;
     private JLabel panelDeEstado;
+    private JTextField txtIngresarNombre;
     public Gui() {
     	String palabraSecreta = Logica.obtenerPalabraRandom();
         logica = new Logica(palabraSecreta);
-        initialize();
+       // initialize();
         pantallainicio();
     }
     private void pantallainicio() {
     	inicio = new JFrame();
     	inicio.getContentPane().setForeground(new Color(255, 255, 255));
     	inicio.getContentPane().setBackground(new Color(255, 255, 255));
+    	inicio.getContentPane().setLayout(null);
+    	
+    	JLabel label = new JLabel("");
+    	label.setBounds(0, 0, 161, 120);
+    	inicio.getContentPane().add(label);
+    	
+    	JLabel lblNewLabel_1 = new JLabel("Wungsdle");
+    	lblNewLabel_1.setBounds(0, 0, 394, 120);
+    	lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+    	inicio.getContentPane().add(lblNewLabel_1);
+    	
+    	JComboBox comboBox_1 = new JComboBox();
+    	comboBox_1.setBounds(404, 0, 79, 50);
+    	comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"ES", "EN", "FR", "IT"}));
+    	inicio.getContentPane().add(comboBox_1);
+    	
+    	JLabel label_1 = new JLabel("");
+    	label_1.setBounds(0, 120, 161, 120);
+    	inicio.getContentPane().add(label_1);
+    	
+    	JButton btnNewButton_1 = new JButton("Jugar");
+    	btnNewButton_1.setBounds(0, 120, 483, 120);
+    	btnNewButton_1.addMouseListener(new MouseAdapter() {
+    		@Override
+    		public void mouseClicked(MouseEvent e) {
+    			 inicio.setVisible(false);
+ 				frame.setVisible(true);
+    		}
+    	});
+    	inicio.getContentPane().add(btnNewButton_1);
+    	
+    	JLabel label_2 = new JLabel("");
+    	label_2.setBounds(322, 120, 161, 120);
+    	inicio.getContentPane().add(label_2);
+    	
+    	JComboBox comboBox_2 = new JComboBox();
+    	comboBox_2.setBounds(0, 310, 139, 50);
+    	comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"normal( 5 Letras)", "dificil(8 Letras)", "pesadilla(10 Letras)"}));
+    	inicio.getContentPane().add(comboBox_2);
+    	
+    	txtIngresarNombre = new JTextField();
+    	txtIngresarNombre.setBounds(140, 240, 343, 120);
+    	txtIngresarNombre.setText("Ingresar nombre");
+    	inicio.getContentPane().add(txtIngresarNombre);
+    	txtIngresarNombre.setColumns(10);
+    	
+    	JLabel label_3 = new JLabel("");
+    	label_3.setBounds(322, 240, 161, 120);
+    	inicio.getContentPane().add(label_3);
         inicio.setBounds(100, 100, 500, 400);
         inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -57,44 +98,6 @@ public class Gui {
         JComboBox comboBox = new JComboBox();
         comboBox.setModel(new DefaultComboBoxModel(new String[] {"ES", "EN", "FR", "IT"}));
         comboBox.setToolTipText("");
-        
-        JButton btnNewButton = new JButton("Jugar");
-        btnNewButton.addMouseListener(new MouseAdapter() {
-        	 @Override
-        	public void mouseClicked(MouseEvent e) {
-        		 inicio.setVisible(false);
-				frame.setVisible(true);
-        	}
-        });
-        inicio.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel, btnNewButton, comboBox}));
-        GroupLayout groupLayout = new GroupLayout(inicio.getContentPane());
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addContainerGap()
-        					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        					.addGap(103)
-        					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(183)
-        					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap(231, Short.MAX_VALUE))
-        );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-        			.addGap(88)
-        			.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-        			.addGap(154))
-        );
-        inicio.getContentPane().setLayout(groupLayout);
-    	
     }
     private void initialize() {
         frame = new JFrame();
