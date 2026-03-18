@@ -26,32 +26,32 @@ public class Testing {
     
     private static void testCorrectWord() {
         System.out.println("Test 1: Palabra completamente correcta");
-        Master master = new Master("JAVA");
-        int[] result = master.controlarPalabra("JAVA");
+        Logica logica = new Logica("JAVA");
+        int[] result = logica.controlarPalabra("JAVA");
         printResult("JAVA", result, new int[]{0, 0, 0, 0});
         System.out.println("✓ Passou\n");
     }
     
     private static void testWrongPosition() {
         System.out.println("Test 2: Letras en posición incorrecta");
-        Master master = new Master("JAVA");
-        int[] result = master.controlarPalabra("AVAJ");
+        Logica logica = new Logica("JAVA");
+        int[] result = logica.controlarPalabra("AVAJ");
         printResult("AVAJ", result, new int[]{1, 1, 1, 1});
         System.out.println("✓ Passou\n");
     }
     
     private static void testLettersNotPresent() {
         System.out.println("Test 3: Letras que no están en la palabra");
-        Master master = new Master("JAVA");
-        int[] result = master.controlarPalabra("BCDE");
+        Logica logica = new Logica("JAVA");
+        int[] result = logica.controlarPalabra("BCDE");
         printResult("BCDE", result, new int[]{2, 2, 2, 2});
         System.out.println("✓ Passou\n");
     }
     
     private static void testMixedResults() {
         System.out.println("Test 4: Mezcla de verde, amarillo y gris");
-        Master master = new Master("JAVA");
-        int[] result = master.controlarPalabra("JXVB");
+        Logica logica = new Logica("JAVA");
+        int[] result = logica.controlarPalabra("JXVB");
         // J está correcto (verde), X no existe (gris), V existe pero mal posición (amarillo), B no existe (gris)
         printResult("JXVB", result, new int[]{0, 2, 1, 2});
         System.out.println("✓ Passou\n");
@@ -59,32 +59,32 @@ public class Testing {
     
     private static void testWinCondition() {
         System.out.println("Test 5: Condición de victoria");
-        Master master = new Master("JAVA");
+        Logica logica = new Logica("JAVA");
         
-        master.controlarPalabra("XXXX");
-        master.controlarPalabra("YYYY");
-        boolean hasWon = master.Ganaste("JAVA");
+        logica.controlarPalabra("XXXX");
+        logica.controlarPalabra("YYYY");
+        boolean hasWon = logica.Ganaste("JAVA");
         
         System.out.println("¿Ganó con 'JAVA'? " + (hasWon ? "SÍ ✓" : "NO ✗"));
-        System.out.println("Intentos realizados: " + master.getIntentos());
+        System.out.println("Intentos realizados: " + logica.getIntentos());
         System.out.println("✓ Passou\n");
     }
     
     private static void testMultipleAttempts() {
         System.out.println("Test 6: Múltiples intentos y derrota");
-        Master master = new Master("JAVA");
+        Logica logica = new Logica("JAVA");
         
         String[] guesses = {"XXXX", "YYYY", "ZZZZ", "BBBB", "CCCC", "DDDD"};
         
         for (String guess : guesses) {
-            int[] result = master.controlarPalabra(guess);
-            System.out.println("Intento " + master.getIntentos() + ": " + guess);
+            int[] result = logica.controlarPalabra(guess);
+            System.out.println("Intento " + logica.getIntentos() + ": " + guess);
             printColorCodes(result);
         }
         
-        boolean hasLost = master.Perdiste();
+        boolean hasLost = logica.Perdiste();
         System.out.println("\n¿Perdió después de 6 intentos? " + (hasLost ? "SÍ ✓" : "NO ✗"));
-        System.out.println("La palabra secreta era: " + master.getPalabraRandom());
+        System.out.println("La palabra secreta era: " + logica.getPalabraRandom());
         System.out.println("✓ Passou\n");
     }
     

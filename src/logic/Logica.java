@@ -1,15 +1,19 @@
 package logic;
 
-public class Master {
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Logica {
     //
 	private String palabraRandom;//Variable random del juego
     //
 	private static  int Intentosmaximos= 6;//intentos  que tiene el jugador para adivinar la palabra
 	//
     private int intentos;//contador de intentos realizados
+    
     //
     
-    public Master(String secretWord) {
+    public Logica(String secretWord) {
         this.palabraRandom = secretWord.toUpperCase();//pasa a minuscula
         this.intentos = 0;//comienzo de contador
     }
@@ -67,5 +71,39 @@ public class Master {
     
     public String getPalabraRandom() {
         return palabraRandom;
+    }
+    public static String obtenerPalabraRandom() {
+        ArrayList<String> palabras = new ArrayList<>();
+
+        // 20 palabras de 5 letras
+        palabras.add("perro");
+        palabras.add("gatos");
+        palabras.add("nubes");
+        palabras.add("campo");
+        palabras.add("libro");
+        palabras.add("silla");
+        palabras.add("plaza");
+        palabras.add("coche");
+        palabras.add("verde");
+        palabras.add("rojos");
+        palabras.add("negro");
+        palabras.add("blusa");
+        palabras.add("fruta");
+        palabras.add("dulce");
+        palabras.add("salto");
+        palabras.add("cielo");
+        palabras.add("marco");
+        palabras.add("luzca");
+        palabras.add("brisa");
+        palabras.add("hojas");
+
+        Random random = new Random();
+        int indice = random.nextInt(palabras.size());
+
+        return palabras.get(indice);
+    }
+   private String palabraRandomelegida = obtenerPalabraRandom();
+    public String getpalabraRandomelegida() {
+        return palabraRandomelegida;
     }
 }
