@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Logica {
@@ -72,38 +73,13 @@ public class Logica {
     public String getPalabraRandom() {
         return palabraRandom;
     }
-    public static String obtenerPalabraRandom() {
-        ArrayList<String> palabras = new ArrayList<>();
 
-        // 20 palabras de 5 letras
-        palabras.add("perro");
-        palabras.add("gatos");
-        palabras.add("nubes");
-        palabras.add("campo");
-        palabras.add("libro");
-        palabras.add("silla");
-        palabras.add("plaza");
-        palabras.add("coche");
-        palabras.add("verde");
-        palabras.add("rojos");
-        palabras.add("negro");
-        palabras.add("blusa");
-        palabras.add("fruta");
-        palabras.add("dulce");
-        palabras.add("salto");
-        palabras.add("cielo");
-        palabras.add("marco");
-        palabras.add("luzca");
-        palabras.add("brisa");
-        palabras.add("hojas");
+	public static String obtenerPalabraRandom() {
+		ArrayList<String> palabras = new ArrayList<>(Arrays.asList("perro", "gatos", "nubes", "campo", "libro","silla", "plaza", "coche", "verde", "rojos","negro", "blusa", "fruta", "dulce", "salto","cielo", "marco", "luzca", "brisa", "hojas"));
 
-        Random random = new Random();
-        int indice = random.nextInt(palabras.size());
+	        Random random = new Random();
+	        int indice = random.nextInt(palabras.size());
 
-        return palabras.get(indice);
+	        return palabras.get(indice);
+	    }
     }
-   private String palabraRandomelegida = obtenerPalabraRandom();
-    public String getpalabraRandomelegida() {
-        return palabraRandomelegida;
-    }
-}

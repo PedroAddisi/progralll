@@ -38,8 +38,8 @@ public class Gui {
     private JPanel panelDeResultados;
     private JLabel panelDeEstado;
     public Gui() {
-    	
-        logica = new Logica("java"); // Palabra secreta por ahora
+    	String palabraSecreta = Logica.obtenerPalabraRandom();
+        logica = new Logica(palabraSecreta);
         initialize();
         pantallainicio();
     }
